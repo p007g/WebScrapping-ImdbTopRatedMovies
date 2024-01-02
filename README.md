@@ -2,7 +2,7 @@
 >
 > Scrapping the top rated movies data from IMDB website using Python(BeautifulSoup and Request module)
 
-## Summary:  
+### Summary:  
   
 We are taken the data(top rated movies of 2023) from Imdb website and put it in the spreadsheet format.  
 --------------We use Python for that-----------------  
@@ -18,23 +18,24 @@ All the data contain inside the HTML tags of the website
 ###### Let's get Started.....
 
 => first we have Python installed in our system.  
-=> open the VS-Code editor, make a file named 'scrapper.py'  
+=> open the VS-Code editor, make a file named 'scrape.py'  
 => next, open the terminal in editor or cmd window and install the following modules:
 
     pip install request
     pip install bs4  
+    pip install openpyxl
       
-=> start to writing the code in 'scrapper.py'---   
+=> start to writing the code in 'scrape.py'---   
 --importing both the modules:
 
     import request
-    from bs4 import BeautifulSoup  
+    from bs4 import BeautifulSoup
 
-=> now we are going to the google and type 'imdb top rated movies' on search bar--    
+=> now go to google and type 'imdb top rated movies' on search bar--    
    open the website and copy the URL("https://www.imdb.com/chart/top/").  
 
 => we need to configure our scrapper to **send a fake user-agent with every request**--  
---to prevent a website to block a web scraper and return a 403 error is because you is telling the website you are a scraper in the user-agents you send to the website when making your requests.  
+--to prevent a website to block a web scraper and return a 403 error is because you are telling the website that you are a scraper in the **user-agents**, you send to the website when making your requests.  
 for more details : [click here](https://scrapeops.io/web-scraping-playbook/403-forbidden-error-web-scraping/#use-fake-user-agents)
 
     user_agents_list = [
@@ -42,11 +43,11 @@ for more details : [click here](https://scrapeops.io/web-scraping-playbook/403-f
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
     'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
     'Mozilla/5.0 (X11; CrOS x86_64 10066.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-]
+    ]
     response = requests.get('https://www.imdb.com/chart/top/', headers={'User-Agent': random.choice(user_agents_list)})
     response.raise_for_status()
 
-=> two more modules is also required as follows:
+=> two more modules are also import as:
 
     #for fake user agents generation:
     import random
@@ -69,4 +70,6 @@ for more details : [click here](https://scrapeops.io/web-scraping-playbook/403-f
 
         sheet.append([rank, name, year, rating])
 
-=>  Finally we have the data in Excel Sheet named 'IMDB Movies Rating.xlsx'.
+=>  Finally we have the data in Excel Sheet named 'IMDB Movies Rating.xlsx'.  
+
+### *END
